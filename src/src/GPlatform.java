@@ -32,7 +32,7 @@ public class GPlatform {
         
         Camera camera = new Camera(640, 480);
         
-        //Rect test = new Rect(0.5f,-0.5f,-0.5f,0.5f,1f,1f,1f,1f);
+
         float[] vertices = new float[]{
             -0.5f, 0.5f,0,
              0.5f, 0.5f,0,
