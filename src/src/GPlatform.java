@@ -24,11 +24,13 @@ public class GPlatform {
         //glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         
         Window win = new Window();
-        win.createWindow("CS372 Group Project");
+        win.createWindow("Much game. So show off. wow!");
         
         
         GL.createCapabilities();
         glEnable(GL_TEXTURE_2D);
+        
+        Camera camera = new Camera(640, 480);
         
         //Rect test = new Rect(0.5f,-0.5f,-0.5f,0.5f,1f,1f,1f,1f);
         float[] vertices = new float[]{
@@ -54,13 +56,14 @@ public class GPlatform {
         Texture tex = new Texture("./res/doge_1.jpg");
         Shader shader = new Shader("shader");
         
-        Matrix4f projection = new Matrix4f().ortho2D(-640/2, 640/2, -480/2, 480/2);
+        //Matrix4f projection = new Matrix4f().ortho2D(-640/2, 640/2, -480/2, 480/2);
         
         Matrix4f scale = new Matrix4f().scale(128);
         Matrix4f target = new Matrix4f();
-        projection.mul(scale, target);
+        //projection.mul(scale, target);
         
         while(!win.shouldClose()){
+            target = scale;
             if(glfwGetKey(win.getWindow(),GLFW_KEY_ESCAPE ) == GL_TRUE ){
                 break;
             }
@@ -71,7 +74,7 @@ public class GPlatform {
 
             shader.bind();
             shader.setUniform("sampler", 0);
-            shader.setUniform("projection", target);
+            shader.setUniform("projection", camera.getProjection().mul(target));
             tex.bind(0);
             model.render();
             
