@@ -24,7 +24,7 @@ public class GPlatform {
         //glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
         
         Window win = new Window();
-        win.createWindow("CS372 Group Project");
+        win.createWindow("WOW!!");
         
         
         GL.createCapabilities();
