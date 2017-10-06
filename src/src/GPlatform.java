@@ -16,6 +16,7 @@ import org.lwjgl.opengl.*;
  */
 public class GPlatform {
     public static void main(String[] args){
+        Window.setCallbacks();
         
         if( !glfwInit() ){
             throw new IllegalStateException("glfw failed to initalize!");
@@ -30,7 +31,7 @@ public class GPlatform {
         GL.createCapabilities();
         glEnable(GL_TEXTURE_2D);
         
-        Camera camera = new Camera(640, 480);
+        Camera camera = new Camera(win.getWidth(), win.getHeight());
         
 
         float[] vertices = new float[]{
@@ -62,23 +63,45 @@ public class GPlatform {
         Matrix4f target = new Matrix4f();
         //projection.mul(scale, target);
         
+        double frame_cap = 1.0/60.0; //limits to 60 FPS
+        double time = Timer.getTime();
+        double unprocessed = 0;
+        double frames_time = 0;
+        int frames = 0;
         while(!win.shouldClose()){
-            target = scale;
-            if(glfwGetKey(win.getWindow(),GLFW_KEY_ESCAPE ) == GL_TRUE ){
-                break;
+            boolean can_render = false;
+            double time_2 = Timer.getTime();
+            double passed = time_2 - time;
+            unprocessed += passed;
+            frames_time += passed;
+            time = time_2;
+            
+            while(unprocessed >= frame_cap){
+                unprocessed -= frame_cap;
+                can_render = true;
+                target = scale;
+                if(glfwGetKey(win.getWindow(),GLFW_KEY_ESCAPE ) == GL_TRUE ){             
+                    break;
+                }
+                glfwPollEvents();
+                if(frames_time >= 1.0){
+                    frames_time =0;
+                        System.out.println("FPS: " + frames);
+                        frames =0;
+                }
             }
-            glfwPollEvents();
-            
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-            
+            if(can_render){
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+                shader.bind();
+                shader.setUniform("sampler", 0);
+                shader.setUniform("projection", camera.getProjection().mul(target));
+                tex.bind(0);
+                model.render();
 
-            shader.bind();
-            shader.setUniform("sampler", 0);
-            shader.setUniform("projection", camera.getProjection().mul(target));
-            tex.bind(0);
-            model.render();
-            
-            win.swapBuffers();
+                win.swapBuffers();
+                frames++;
+            }
+
         }
         
         glfwTerminate();
