@@ -80,10 +80,10 @@ public class GPlatform {
                 unprocessed -= frame_cap;
                 can_render = true;
                 target = scale;
-                if(glfwGetKey(win.getWindow(),GLFW_KEY_ESCAPE ) == GL_TRUE ){             
+                if(win.getInput().isKeyPressed(GLFW_KEY_ESCAPE)){             
                     break;
                 }
-                glfwPollEvents();
+                win.update();
                 if(frames_time >= 1.0){
                     frames_time =0;
                         System.out.println("FPS: " + frames);

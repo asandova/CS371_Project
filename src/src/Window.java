@@ -17,6 +17,7 @@ public class Window {
     private long Window;
     private int Width, Height;
     private boolean FullScreen;
+    private Input input;
     
     public Window(){
         setSize(640,480);
@@ -38,6 +39,7 @@ public class Window {
             glfwShowWindow(Window);
 
             glfwMakeContextCurrent(Window);
+            input = new Input(Window);
         }
     }
     
@@ -62,8 +64,14 @@ public class Window {
         FullScreen = full;
     }
     
+    public void update(){
+        input.update();
+        glfwPollEvents();
+    }
+    
     public boolean isFullScreen(){return FullScreen;}
     public long getWindow(){ return Window; }
     public int getWidth(){return Width;}
     public int getHeight(){return Height;}
+    public Input getInput(){return input;}
 }
