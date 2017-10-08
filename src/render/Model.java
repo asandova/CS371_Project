@@ -97,4 +97,9 @@ public class Model implements Renderable{
         glDisableVertexAttribArray(1);
 
     }
+    
+    public void display(){
+        Tex.bind(0);
+        render();
+    }
 }

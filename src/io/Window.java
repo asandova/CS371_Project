@@ -8,6 +8,7 @@ package io;
 import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
+import org.lwjgl.glfw.GLFWWindowSizeCallback;
 
 /**
  *
@@ -18,10 +19,14 @@ public class Window {
     private int Width, Height;
     private boolean FullScreen;
     private Input input;
+    private boolean hasResized;
+    private GLFWWindowSizeCallback windowSizeCallback;
     
     public Window(){
-        setSize(640,480);
+        //640,480
+        setSize(640,640);
         setFullScreen(false);
+        hasResized = false;
     }
     
     public void createWindow(String title){
@@ -40,11 +45,28 @@ public class Window {
 
             glfwMakeContextCurrent(Window);
             input = new Input(Window);
+            setLocalCallbacks();
         }
+    }
+    
+    public void cleanUp(){
+        windowSizeCallback.close();
     }
     
     public static void setCallbacks(){
         glfwSetErrorCallback(GLFWErrorCallback.createPrint(System.err));
+    }
+    
+    private void setLocalCallbacks(){
+        windowSizeCallback = new GLFWWindowSizeCallback(){
+            @Override
+            public void invoke(long argWindow, int argWidth, int argHeight){
+                Width = argWidth;
+                Height = argHeight;
+                hasResized = true;
+            }
+        };
+        glfwSetWindowSizeCallback(Window, windowSizeCallback);
     }
     
     public boolean shouldClose(){
@@ -59,12 +81,14 @@ public class Window {
     public void setSize(int width, int height){
         Width = width;
         Height = height;
+        
     }
     public void setFullScreen(boolean full){
         FullScreen = full;
     }
     
     public void update(){
+        hasResized = false;
         input.update();
         glfwPollEvents();
     }
@@ -74,4 +98,5 @@ public class Window {
     public int getWidth(){return Width;}
     public int getHeight(){return Height;}
     public Input getInput(){return input;}
+    public boolean hasResized(){return hasResized;}
 }
