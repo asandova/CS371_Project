@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src;
+package io;
 import static org.lwjgl.glfw.GLFW.*;
 
 
@@ -18,7 +18,7 @@ public class Input {
     public Input(long win){
         window = win;
         keys = new boolean[GLFW_KEY_LAST];
-        for(int i = 0; i < GLFW_KEY_LAST; i++){
+        for(int i = 32; i < GLFW_KEY_LAST; i++){
             keys[i] = false;
         }
     }
@@ -27,7 +27,7 @@ public class Input {
         return glfwGetKey(window, key) == 1;
     }
     public boolean isMouseButtonDown(int button){
-        return glfwGetKey(window, button) == 1;
+        return glfwGetMouseButton(window, button) == 1;
     }
     
     public boolean isKeyPressed(int key){
@@ -38,7 +38,7 @@ public class Input {
     }
     
     public void update(){
-        for(int i = 0; i < GLFW_KEY_LAST; i++){
+        for(int i = 32; i < GLFW_KEY_LAST; i++){
             keys[i] = isKeyDown(i);
         }
     }

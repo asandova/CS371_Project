@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package src;
+import render.Texture;
+import render.Camera;
+import render.Shader;
+import render.Model;
+import io.Timer;
+import io.Window;
 import org.joml.Matrix4f;
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
@@ -32,7 +38,13 @@ public class GPlatform {
         glEnable(GL_TEXTURE_2D);
         
         Camera camera = new Camera(win.getWidth(), win.getHeight());
-        
+        System.out.println(win.getWidth() + " " + win.getHeight() );
+        float[] BGverts = new float[]{
+            -2f, 2f ,0,
+             2f, 2f ,0,
+             2f,-2f ,0,
+            -2f,-2f ,0
+        };
 
         float[] vertices = new float[]{
             -0.5f, 0.5f,0,
@@ -53,6 +65,9 @@ public class GPlatform {
             2,3,0
         };
         
+        Model BG = new Model(BGverts,texture,indices);
+        Texture BGtex = new Texture("./res/HalcyonPlanet.jpg");
+        
         Model model = new Model(vertices, texture, indices);
         Texture tex = new Texture("./res/doge_1.jpg");
         Shader shader = new Shader("shader");
@@ -68,6 +83,7 @@ public class GPlatform {
         double unprocessed = 0;
         double frames_time = 0;
         int frames = 0;
+        
         while(!win.shouldClose()){
             boolean can_render = false;
             double time_2 = Timer.getTime();
@@ -81,7 +97,7 @@ public class GPlatform {
                 can_render = true;
                 target = scale;
                 if(win.getInput().isKeyPressed(GLFW_KEY_ESCAPE)){             
-                    break;
+                    glfwSetWindowShouldClose(win.getWindow(), true );
                 }
                 win.update();
                 if(frames_time >= 1.0){
@@ -95,8 +111,12 @@ public class GPlatform {
                 shader.bind();
                 shader.setUniform("sampler", 0);
                 shader.setUniform("projection", camera.getProjection().mul(target));
-                tex.bind(0);
-                model.render();
+                
+                BGtex.bind(0);
+                BG.render();
+                
+                //tex.bind(0);
+               // model.render();
 
                 win.swapBuffers();
                 frames++;

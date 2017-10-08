@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src;
+package render;
 
 import org.joml.Matrix4f;
 import org.joml.Vector3f;

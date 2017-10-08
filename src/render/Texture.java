@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package src;
+package render;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
