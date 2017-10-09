@@ -3,16 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/Game.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/GPlatform.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/Input.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/Model.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/Shader.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/Renderable.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Model.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Shader.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/world/Tile.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Texture.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/world/World.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/io/Timer.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Camera.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/GUI.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/Texture.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/Window.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/Timer.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/io/Window.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/io/Input.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/world/TileRenderer.java</file>
         </group>
     </open-files>
 </project-private>

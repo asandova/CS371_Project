@@ -11,46 +11,43 @@ import static org.lwjgl.opengl.GL20.*;
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
-import src.Renderable;
+
 
 
 /**
  *
  * @author August's PC
  */
-public class Model implements Renderable{
+public class Model{
     
     private int draw_count;
     private int v_id;
     private int t_id;
-    private int i_id;
-    
-    
-    private float L; //Left most location
-    private float R; //Right most location
-    private float T; //Top most location
-    private float B; //Bottom most location
-    
+    private int i_id;  
     private Texture Tex;
-//    private float Red;
-//    private float Green;
-//    private float Blue;
-//    private float Alpha;
+    private float[] Vertices;
+    private float[] Texture_Coords;
+    private int[] Indices;
+    
     public Model(float vertices[], float[] tex_coords, int[] indices){
-        draw_count = indices.length;
+        Vertices = vertices;
+        Texture_Coords = tex_coords;
+        Indices = indices;
+        
+        draw_count = Indices.length;
         
         v_id = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, v_id);
-        glBufferData(GL_ARRAY_BUFFER,createBuffer(vertices), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER,createBuffer(Vertices), GL_STATIC_DRAW);
         
         t_id = glGenBuffers();
         glBindBuffer(GL_ARRAY_BUFFER, t_id);
-        glBufferData(GL_ARRAY_BUFFER,createBuffer(tex_coords), GL_STATIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER,createBuffer(Texture_Coords), GL_STATIC_DRAW);
         
         i_id = glGenBuffers();
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,i_id);
-        IntBuffer buffer = BufferUtils.createIntBuffer(indices.length);
-        buffer.put(indices);
+        IntBuffer buffer = BufferUtils.createIntBuffer(Indices.length);
+        buffer.put(Indices);
         buffer.flip();
         
         glBufferData(GL_ELEMENT_ARRAY_BUFFER,buffer,GL_STATIC_DRAW);
@@ -74,7 +71,6 @@ public class Model implements Renderable{
         Tex = tex;
     }
     
-    @Override
     public void render(){
          glEnableVertexAttribArray(0);
          glEnableVertexAttribArray(1);

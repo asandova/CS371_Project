@@ -16,6 +16,8 @@ import static org.lwjgl.opengl.GL13.*;
 /**
  *
  * @author August's PC
+ * NOTE: That the texture class cannot load a texture that has diametions that
+ * are not a power of two or square
  */
 public class Texture {
     private int id;

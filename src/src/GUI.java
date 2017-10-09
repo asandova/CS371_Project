@@ -9,17 +9,6 @@ package src;
  *
  * @author August's PC
  */
-public class GUI implements Renderable {
-    
-    
-    
-    GUI(){
-    }
-    
-    @Override
-    public void render(){
-    
-    
-    } 
-    
+public class GUI {
+
 }

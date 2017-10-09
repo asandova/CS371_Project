@@ -29,7 +29,9 @@ public class Input {
     public boolean isMouseButtonDown(int button){
         return glfwGetMouseButton(window, button) == 1;
     }
-    
+    public boolean isMouseButtonUp(int button){
+        return glfwGetMouseButton(window, button) == 1;
+    }
     public boolean isKeyPressed(int key){
         return (isKeyDown(key) && !keys[key]);
     }

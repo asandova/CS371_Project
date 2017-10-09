@@ -18,6 +18,7 @@ import static org.lwjgl.opengl.GL11.*;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.*;
 import world.TileRenderer;
+import world.World;
 /**
  * 
  * @author August B. Sandoval
@@ -64,15 +65,19 @@ public class GPlatform {
 //        BG.setTexture(BGtex);
 //        
 //        Model model = new Model(vertices, texture, indices);
-        Texture tex = new Texture("./res/doge_1.jpg");
+        //Texture tex = new Texture("./res/doge_1.jpg");
 //        model.setTexture(tex);
         Shader shader = new Shader("shader");
         
         //Matrix4f projection = new Matrix4f().ortho2D(-640/2, 640/2, -480/2, 480/2);
         
-        Matrix4f scale = new Matrix4f().translate(new Vector3f(0,0,0)).scale(32);
-        Matrix4f target = new Matrix4f();
-        camera.setPosition(new Vector3f(-100,0,0));
+//        Matrix4f scale = new Matrix4f().translate(new Vector3f(0,0,0)).scale(128);
+//        Matrix4f target = new Matrix4f();
+        World world = new World();
+        
+        int xp=-720;
+        int yp=260;
+        camera.setPosition(new Vector3f(xp,yp,0));
         //projection.mul(scale, target);
         
         double frame_cap = 1.0/60.0; //limits to 60 FPS
@@ -97,10 +102,23 @@ public class GPlatform {
                 
                 unprocessed -= frame_cap;
                 can_render = true;
-                target = scale;
+                //target = scale;
                 if(win.getInput().isKeyPressed(GLFW_KEY_ESCAPE)){             
                     glfwSetWindowShouldClose(win.getWindow(), true );
                 }
+                if(win.getInput().isKeyDown(GLFW_KEY_LEFT)){
+                    camera.getPosition().add(new Vector3f(1,0,0));
+                }
+                if(win.getInput().isKeyDown(GLFW_KEY_RIGHT)){
+                    camera.getPosition().add(new Vector3f(-1,0,0));
+                }
+                if(win.getInput().isKeyDown(GLFW_KEY_UP)){
+                    camera.getPosition().add(new Vector3f(0,-1,0));
+                }
+                if(win.getInput().isKeyDown(GLFW_KEY_DOWN)){
+                    camera.getPosition().add(new Vector3f(0,1,0));
+                }
+                System.out.println("x: "+xp+" yp: "+yp);
                 win.update();
                 if(frames_time >= 1.0){
                     frames_time =0;
@@ -110,17 +128,13 @@ public class GPlatform {
             }
             if(can_render){
                 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-                shader.bind();
-                shader.setUniform("sampler", 0);
-                shader.setUniform("projection", camera.getProjection().mul(target));
+//                shader.bind();
+//                shader.setUniform("sampler", 0);
+//                shader.setUniform("projection", camera.getProjection().mul(target));
                 
                 //BGtex.bind(0);
                // BG.display();
-                for(int i=0; i < 8; i++){
-                    for(int j=0; j < 8; j++){
-                        tiles.renderTile((byte)0, i, j, shader, scale, camera);
-                    }
-                }
+                world.render(tiles, shader,camera);
                 //tex.bind(0);
                 //model.display();
 
