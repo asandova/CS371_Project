@@ -43,12 +43,7 @@ public class GPlatform {
         
         Camera camera = new Camera(win.getWidth(), win.getHeight());
         System.out.println(win.getWidth() + " " + win.getHeight() );
-//        float[] BGverts = new float[]{
-//            -2f, 2f ,0,
-//             2f, 2f ,0,
-//             2f,-2f ,0,
-//            -2f,-2f ,0
-//        };
+        
         int s = 256;
         float[] BGverts = new float[]{
             -(float)win.getWidth()/s, (float)win.getHeight()/s ,0,
@@ -60,23 +55,37 @@ public class GPlatform {
 
         TileRenderer tiles = new TileRenderer();
         
-        
-//        Model BG = new Model(BGverts,texture,indices);
-//        Texture BGtex = new Texture("./res/HalcyonPlanet.jpg");
-//        BG.setTexture(BGtex);
-//        
-//        Model model = new Model(vertices, texture, indices);
-        //Texture tex = new Texture("./res/doge_1.jpg");
-//        model.setTexture(tex);
         Shader shader = new Shader("shader");
+       /* 
+        float[] vertices1 = new float[]{
+            -1f, 1f,0, 
+             1f, 1f,0,
+             1f,-1f,0,
+            -1f,-1f,0
+            };
         
-        //Matrix4f projection = new Matrix4f().ortho2D(-640/2, 640/2, -480/2, 480/2);
+        float[] texture1 = new float[]{
+            0,0,
+            1,0,
+            1,1,
+            0,1
+        };
         
-//        Matrix4f scale = new Matrix4f().translate(new Vector3f(0,0,0)).scale(128);
-//        Matrix4f target = new Matrix4f();
+        int[] indices = new int[]{
+            0,1,2,
+            2,3,0
+        };
+        */
+        
+        
+        
         World world = new World();
         
         Player player = new Player();
+        //Player title = new Player();
+        //title.setModel(vertices1, texture1, indices);
+        //title.setTexture(new Texture("TestTitle.jpg") );
+
         
         int xp=-720;
         int yp=260;
@@ -125,6 +134,8 @@ public class GPlatform {
                 
                 player.update((float)frame_cap, win, camera, world);
                 
+                //title.update((float)frame_cap, win, camera, world);
+                
                 world.correctCamera(camera, win);
                 
                 win.update();
@@ -145,8 +156,8 @@ public class GPlatform {
                 world.render(tiles, shader,camera, win);
                 //tex.bind(0);
                 //model.display();
-
-                //player.render(shader, camera);
+                //title.render(shader, camera);
+                player.render(shader, camera);
                 win.swapBuffers();
                 frames++;
             }

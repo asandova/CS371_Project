@@ -15,7 +15,7 @@ import render.Shader;
  * @author August's PC
  */
 public class World {
-    private final int veiw = 8;
+    private final int veiw = 16;
     private byte[] tiles;
     private int width;
     private int height;
@@ -23,9 +23,9 @@ public class World {
     private Matrix4f world;
     
     public World(){
-        width = 8;
-        height = 8;
-        scale = 128;
+        width = 16;
+        height = 16;
+        scale = 64;
         tiles = new byte[width * height];
         world = new Matrix4f().setTranslation(new Vector3f(0));
         world.scale(scale);

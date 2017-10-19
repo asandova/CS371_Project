@@ -24,24 +24,24 @@ public class TileRenderer {
     public TileRenderer(){
         tile_textures = new HashMap<String, Texture>();
         float[] vertices = new float[]{
-            -2f, 2f,0,
-             2f, 2f,0,
-             2f,-2f,0,
-            -2f,-2f,0
+            -1f, 1f,0,
+             1f, 1f,0,
+             1f,-1f,0,
+            -1f,-1f,0
             };
         
         float[] texture = new float[]{
             0,0,
-            2,0,
-            2,2,
-            0,2
+            1,0,
+            1,1,
+            0,1
         };
         
         int[] indices = new int[]{
             0,1,2,
             2,3,0
         };
-        model = new Model(vertices, texture, indices);
+        model = new Model( scale(vertices,6) , scale(texture,6 ), indices);
         
         for(int i = 0; i < Tile.tiles.length; i++){
             if(Tile.tiles[i]!= null){
@@ -51,6 +51,14 @@ public class TileRenderer {
                 }
             }
         }
+    }
+    
+    private float[] scale(float[] a, float sf){
+        for(int i = 0; i < a.length; i++){
+            a[i] *= sf;
+            //System.out.println(a[i]);
+        }
+        return a;
     }
     
     public void renderTile(Tile tile, int x, int y ,Shader shader, Matrix4f world, Camera cam){

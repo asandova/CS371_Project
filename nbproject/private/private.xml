@@ -6,15 +6,16 @@
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/GPlatform.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Model.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Shader.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/Entity/Player.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Camera.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/world/TileRenderer.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/world/Tile.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Texture.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/world/World.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/io/Timer.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/render/Camera.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/src/GUI.java</file>
+            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/Entity/Transform.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/io/Window.java</file>
             <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/io/Input.java</file>
-            <file>file:/C:/Users/August's%20PC/Documents/NetBeansProjects/CS371_GroupProject/src/world/TileRenderer.java</file>
         </group>
     </open-files>
 </project-private>

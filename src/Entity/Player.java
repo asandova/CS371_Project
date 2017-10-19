@@ -22,6 +22,7 @@ public class Player {
  
     private Model model;
     private Texture tex;
+    //private Animation animation
     private Transform transform;
     
     public Player(){
@@ -46,9 +47,17 @@ public class Player {
         
         model = new Model(vertices,texture,indices);
         tex = new Texture("doge_1.jpg");
+        //text = new Animation(1,15, "doge");
         transform = new Transform();
-        transform.scale = new Vector3f(16,16,1);
+        transform.scale = new Vector3f(64,64,1);
     }
+    public void setTexture(Texture nTex){
+        tex = nTex;
+    }
+    public void setModel(float[] verts, float[] texture, int[] indices){
+        model = new Model(verts, texture, indices);
+    }
+    
     public void update(float delta, Window window, Camera camera, World world){
                  if(window.getInput().isKeyDown(GLFW_KEY_A)){
                     transform.pos.add(new Vector3f(-10 * delta,0,0));
