@@ -38,6 +38,7 @@ public class Input {
     public boolean isKeyReleased(int key){
         return (!isKeyDown(key) && keys[key]);
     }
+    
     public void update(){
         for(int i = 32; i < GLFW_KEY_LAST; i++){
             keys[i] = isKeyDown(i);
