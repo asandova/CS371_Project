@@ -24,17 +24,17 @@ public class TileRenderer {
     public TileRenderer(){
         tile_textures = new HashMap<String, Texture>();
         float[] vertices = new float[]{
-            -1f, 1f,0,
-             1f, 1f,0,
-             1f,-1f,0,
-            -1f,-1f,0
+            -2f, 2f,0,
+             2f, 2f,0,
+             2f,-2f,0,
+            -2f,-2f,0
             };
         
         float[] texture = new float[]{
             0,0,
-            1,0,
-            1,1,
-            0,1
+            2,0,
+            2,2,
+            0,2
         };
         
         int[] indices = new int[]{

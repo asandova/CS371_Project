@@ -47,7 +47,7 @@ public class Player {
         model = new Model(vertices,texture,indices);
         tex = new Texture("doge_1.jpg");
         transform = new Transform();
-        transform.scale = new Vector3f(128,128,1);
+        transform.scale = new Vector3f(16,16,1);
     }
     public void update(float delta, Window window, Camera camera, World world){
                  if(window.getInput().isKeyDown(GLFW_KEY_A)){

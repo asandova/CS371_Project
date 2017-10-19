@@ -146,7 +146,7 @@ public class GPlatform {
                 //tex.bind(0);
                 //model.display();
 
-                player.render(shader, camera);
+                //player.render(shader, camera);
                 win.swapBuffers();
                 frames++;
             }
