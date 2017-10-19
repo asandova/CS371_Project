@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package src;
+import Entity.Player;
 import render.Texture;
 import render.Camera;
 import render.Shader;
@@ -75,6 +76,8 @@ public class GPlatform {
 //        Matrix4f target = new Matrix4f();
         World world = new World();
         
+        Player player = new Player();
+        
         int xp=-720;
         int yp=260;
         camera.setPosition(new Vector3f(xp,yp,0));
@@ -118,7 +121,12 @@ public class GPlatform {
                 if(win.getInput().isKeyDown(GLFW_KEY_DOWN)){
                     camera.getPosition().add(new Vector3f(0,1,0));
                 }
-                System.out.println("x: "+xp+" yp: "+yp);
+                //System.out.println("x: "+xp+" yp: "+yp);
+                
+                player.update((float)frame_cap, win, camera, world);
+                
+                world.correctCamera(camera, win);
+                
                 win.update();
                 if(frames_time >= 1.0){
                     frames_time =0;
@@ -134,10 +142,11 @@ public class GPlatform {
                 
                 //BGtex.bind(0);
                // BG.display();
-                world.render(tiles, shader,camera);
+                world.render(tiles, shader,camera, win);
                 //tex.bind(0);
                 //model.display();
 
+                player.render(shader, camera);
                 win.swapBuffers();
                 frames++;
             }

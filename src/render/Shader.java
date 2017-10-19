@@ -59,6 +59,14 @@ public class Shader {
     
     }
     
+    protected void finalize(){
+       glDetachShader(program, vs);
+       glDetachShader(program, fs);
+       glDeleteShader(vs);
+       glDeleteShader(fs);
+       glDeleteProgram(program);
+    }
+    
     public void setUniform(String name, int value){
         int location = glGetUniformLocation(program, name);
         if(location != -1){
