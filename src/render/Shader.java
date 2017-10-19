@@ -66,14 +66,6 @@ public class Shader {
         }
     }
     
-    protected void finalize(){
-        glDetachShader(program,vs);
-        glDetachShader(program,fs);
-        glDeleteShader(vs);
-        glDeleteShader(fs);
-        glDeleteProgram(program);
-    }
-    
     public void setUniform(String name, Matrix4f value){
         int location = glGetUniformLocation(program, name);
         FloatBuffer buffer = BufferUtils.createFloatBuffer(16);

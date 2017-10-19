@@ -11,17 +11,16 @@ package world;
  */
 public class Tile {
     public static Tile tiles[] = new Tile[16];
-    public static byte NoT = 0;
-    public static final Tile text_tile = new Tile("nebula-space");
+    
+    public static final Tile text_tile = new Tile((byte)0,"nebula-space");
     
     private byte ID;
     private String Texture;
     
-    public Tile( String texture){
-        ID = NoT;
-        NoT++;
+    public Tile(byte id, String texture){
+        ID = id;
         Texture = texture;
-        if(tiles[ID] != null )
+        if(tiles[id] != null )
             throw new IllegalStateException("Tiles at [" + ID + "] is already being used!");
         tiles[ID] = this;
     }
