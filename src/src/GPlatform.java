@@ -19,6 +19,7 @@ import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.*;
 import world.TileRenderer;
 import world.World;
+import Entity.Player;
 /**
  * 
  * @author August B. Sandoval
@@ -49,14 +50,6 @@ public class GPlatform {
 //            -2f,-2f ,0
 //        };
         int s = 256;
-        float[] BGverts = new float[]{
-            -(float)win.getWidth()/s, (float)win.getHeight()/s ,0,
-             (float)win.getWidth()/s, (float)win.getHeight()/s ,0,
-             (float)win.getWidth()/s,-(float)win.getHeight()/s ,0,
-            -(float)win.getWidth()/s,-(float)win.getHeight()/s ,0
-        };
-
-
         TileRenderer tiles = new TileRenderer();
         
         
@@ -74,10 +67,7 @@ public class GPlatform {
 //        Matrix4f scale = new Matrix4f().translate(new Vector3f(0,0,0)).scale(128);
 //        Matrix4f target = new Matrix4f();
         World world = new World();
-        
-        int xp=-720;
-        int yp=260;
-        camera.setPosition(new Vector3f(xp,yp,0));
+        Player player = new Player();
         //projection.mul(scale, target);
         
         double frame_cap = 1.0/60.0; //limits to 60 FPS
@@ -107,18 +97,25 @@ public class GPlatform {
                     glfwSetWindowShouldClose(win.getWindow(), true );
                 }
                 if(win.getInput().isKeyDown(GLFW_KEY_LEFT)){
-                    camera.getPosition().add(new Vector3f(1,0,0));
+                    //camera.getPosition().add(new Vector3f(1,0,0));
+       
                 }
                 if(win.getInput().isKeyDown(GLFW_KEY_RIGHT)){
-                    camera.getPosition().add(new Vector3f(-1,0,0));
+                    //camera.getPosition().add(new Vector3f(-1,0,0));
+   
                 }
                 if(win.getInput().isKeyDown(GLFW_KEY_UP)){
-                    camera.getPosition().add(new Vector3f(0,-1,0));
+                    //camera.getPosition().add(new Vector3f(0,-1,0));
+              
                 }
                 if(win.getInput().isKeyDown(GLFW_KEY_DOWN)){
-                    camera.getPosition().add(new Vector3f(0,1,0));
+                    //camera.getPosition().add(new Vector3f(0,1,0));
+                   
                 }
-                System.out.println("x: "+xp+" yp: "+yp);
+                player.update((float)frame_cap, win, camera, world);
+                
+                world.correctCamera(camera, win);
+                
                 win.update();
                 if(frames_time >= 1.0){
                     frames_time =0;
@@ -134,7 +131,8 @@ public class GPlatform {
                 
                 //BGtex.bind(0);
                // BG.display();
-                world.render(tiles, shader,camera);
+                world.render(tiles, shader,camera,win);
+                player.render(shader, camera);
                 //tex.bind(0);
                 //model.display();
 
